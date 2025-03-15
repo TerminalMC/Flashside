@@ -18,6 +18,9 @@ dependencies {
     // 0.4.1 since 0.16.8
 //    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixinextras_version}")))
 
+    // MixinSquared
+    include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${mixinsquared_version}")))
+
     // ModMenu
     modImplementation("maven.modrinth:mOgUt4GM:${modmenu_version}")
 
