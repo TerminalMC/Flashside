@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0
+
+- Added optional command button
+- Added option to change the button order
+
 ## 0.4.0
 
 - Added option to move Flashback button vertically on title screen

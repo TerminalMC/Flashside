@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package dev.terminalmc.flashside.mixin.modmenu;
+package dev.terminalmc.flashside.mixin.pause;
 
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.terraformersmc.modmenu.gui.widget.UpdateCheckerTexturedButtonWidget;
+import com.terraformersmc.modmenu.mixin.MixinGameMenu;
 import dev.terminalmc.flashside.Flashside;
 import dev.terminalmc.flashside.config.Config;
 import net.minecraft.client.gui.layouts.LayoutElement;
@@ -30,11 +31,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import java.util.List;
 
 @Mixin(value = PauseScreen.class, priority = 1100)
-public class MixinSquaredPauseScreen {
+public class MixinSquaredModMenuPauseScreen {
 
     /**
-     * Intercept the ModMenu icon-type button.
+     * Intercepts the ModMenu pause-screen icon button added by
+     * {@link MixinGameMenu#onInitWidgets}.
+     *
+     * <p><b>Note:</b> MixinExtras errors are expected on the annotation,
+     * method and target.</p>
      */
+    @SuppressWarnings("JavadocReference")
     @TargetHandler(
             mixin = "com.terraformersmc.modmenu.mixin.MixinGameMenu",
             name = "onInitWidgets"
@@ -47,10 +53,9 @@ public class MixinSquaredPauseScreen {
             )
     )
     private void wrapAdd(List<LayoutElement> instance, int index, Object element, Operation<Void> original) {
-        if (
-                !Config.options().leftSide 
-                && element instanceof UpdateCheckerTexturedButtonWidget button
-        ) {
+        // ModMenu icon button is always on the right, so we only intercept it
+        // if the Flashside buttons are also on the right.
+        if (!Config.options().leftSide && element instanceof UpdateCheckerTexturedButtonWidget button) {
             Flashside.mmButton = button;
         }
         else original.call(instance, index, element);

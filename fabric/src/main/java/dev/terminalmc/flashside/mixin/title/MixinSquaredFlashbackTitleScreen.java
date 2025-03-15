@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package dev.terminalmc.flashside.mixin.flashback;
+package dev.terminalmc.flashside.mixin.title;
 
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.moulberry.flashback.mixin.ui.MixinTitleScreen;
 import com.moulberry.flashback.screen.FlashbackButton;
 import dev.terminalmc.flashside.Flashside;
 import net.minecraft.client.gui.components.Button;
@@ -28,10 +29,16 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = TitleScreen.class, priority = 1400)
-public class MixinSquaredTitleScreen {
+public class MixinSquaredFlashbackTitleScreen {
+
     /**
-     * Optionally reposition the Flashback button.
+     * Optionally repositions the Flashback title-screen icon button created by
+     * {@link MixinTitleScreen#createOpenSelectReplayScreenButton}.
+     *
+     * <p><b>Note:</b> MixinExtras errors are expected on the annotation,
+     * method and target.</p>
      */
+    @SuppressWarnings("JavadocReference")
     @TargetHandler(
             mixin = "com.moulberry.flashback.mixin.ui.MixinTitleScreen",
             name = "createOpenSelectReplayScreenButton"
@@ -43,8 +50,8 @@ public class MixinSquaredTitleScreen {
                     target = "(IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;)Lcom/moulberry/flashback/screen/FlashbackButton;"
             )
     )
-    private FlashbackButton wrapConstructFlashbackButton(int x, int y, int width, int height, 
-                                                         Component component, Button.OnPress onPress, 
+    private FlashbackButton wrapConstructFlashbackButton(int x, int y, int width, int height,
+                                                         Component component, Button.OnPress onPress,
                                                          Operation<FlashbackButton> original) {
         if (Flashside.fbTitleScreenX != -1) x = Flashside.fbTitleScreenX;
         if (Flashside.fbTitleScreenY != -1) y = Flashside.fbTitleScreenY;

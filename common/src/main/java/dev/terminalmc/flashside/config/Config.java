@@ -28,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.function.Supplier;
 
 public class Config {
     private static final Path CONFIG_DIR = Services.PLATFORM.getConfigDir();
@@ -56,7 +57,21 @@ public class Config {
         
         public static final int startRowDefault = 1;
         public int startRow = startRowDefault;
+
+        public static final boolean commandEnabledDefault = false;
+        public boolean commandEnabled = commandEnabledDefault;
+
+        public static final String commandStringDefault = "/flashback mark";
+        public String commandString = commandStringDefault;
         
+        public static final Supplier<Action[]> actionsDefault = () -> new Action[]{
+                Action.START_STOP,
+                Action.PAUSE_UNPAUSE,
+                Action.CANCEL,
+                Action.COMMAND
+        };
+        public Action[] actions = actionsDefault.get();
+
         // Title screen options
 
         public static final boolean editTitleScreenDefault = false;
@@ -64,6 +79,13 @@ public class Config {
 
         public static final int startRowTitleScreenDefault = 1;
         public int startRowTitleScreen = startRowTitleScreenDefault;
+    }
+
+    public enum Action {
+        START_STOP,
+        PAUSE_UNPAUSE,
+        CANCEL,
+        COMMAND
     }
 
     // Instance management
@@ -94,7 +116,26 @@ public class Config {
     // Validation
 
     private void validate() {
-        // Called before config is saved
+        if (options.commandString == null || options.commandString.isBlank()) {
+            options.commandString = Options.commandStringDefault;
+        }
+        if (!options.commandString.startsWith("/")) {
+            options.commandString = "/" + options.commandString;
+        }
+        if (containsDuplicate(options.actions)) {
+            options.actions = Options.actionsDefault.get();
+        }
+    }
+
+    private boolean containsDuplicate(Object[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j].equals(array[i])) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     // Load and save

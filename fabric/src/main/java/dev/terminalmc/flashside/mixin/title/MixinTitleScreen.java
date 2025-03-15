@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.terminalmc.flashside.mixin;
+package dev.terminalmc.flashside.mixin.title;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -31,6 +31,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TitleScreen.class)
 public class MixinTitleScreen {
+
+    /**
+     * Clears the stored button positions from the previous menu creation.
+     */
     @Inject(
             method = "init",
             at = @At("HEAD")
@@ -43,7 +47,7 @@ public class MixinTitleScreen {
     }
 
     /**
-     * Calculate the positions for the Flashback and ModMenu buttons.
+     * Calculates the positions for the Flashback and ModMenu buttons.
      */
     @WrapOperation(
             method = "createNormalMenuOptions",

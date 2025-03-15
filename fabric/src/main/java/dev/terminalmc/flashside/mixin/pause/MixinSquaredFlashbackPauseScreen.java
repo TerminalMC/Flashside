@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package dev.terminalmc.flashside.mixin.flashback;
+package dev.terminalmc.flashside.mixin.pause;
 
 import com.bawnorton.mixinsquared.TargetHandler;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.moulberry.flashback.mixin.ui.MixinPauseScreen;
 import com.moulberry.flashback.screen.BottomTextWidget;
 import dev.terminalmc.flashside.Flashside;
+import dev.terminalmc.flashside.config.Config;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.LayoutElement;
@@ -31,10 +33,15 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = PauseScreen.class, priority = 1100)
-public class MixinSquaredPauseScreen {
+public class MixinSquaredFlashbackPauseScreen {
 
     /**
-     * Intercept the Flashback buttons.
+     * Intercepts the Flashback buttons added via
+     * {@link GridLayout.RowHelper#addChild(LayoutElement)}
+     * in {@link MixinPauseScreen#createPauseMenu}.
+     *
+     * <p><b>Note:</b> MixinExtras errors are expected on the annotation,
+     * method, target and original call.</p>
      */
     @TargetHandler(
             mixin = "com.moulberry.flashback.mixin.ui.MixinPauseScreen",
@@ -53,7 +60,12 @@ public class MixinSquaredPauseScreen {
     }
 
     /**
-     * Intercept the Flashback buttons.
+     * Intercepts the Flashback buttons added via
+     * {@link GridLayout.RowHelper#addChild(LayoutElement, int)}
+     * in {@link MixinPauseScreen#createPauseMenu}.
+     *
+     * <p><b>Note:</b> MixinExtras errors are expected on the annotation,
+     * method, target and original call.</p>
      */
     @TargetHandler(
             mixin = "com.moulberry.flashback.mixin.ui.MixinPauseScreen",
@@ -70,21 +82,24 @@ public class MixinSquaredPauseScreen {
         if (cancelAdd(child)) return null;
         else return original.call(instance, child, occupiedColumns);
     }
-    
+
+    /**
+     * @return {@code true} if the element addition should be cancelled.
+     */
     @Unique
     private boolean cancelAdd(LayoutElement element) {
         boolean cancel = false;
         if (element instanceof Button button) {
-            if (button.getMessage().getContents() instanceof 
-                    PlainTextContents.LiteralContents contents) {
-                if (Flashside.firstStrings.contains(contents.text())) {
-                    Flashside.fbButton1 = button;
+            if (button.getMessage().getContents() instanceof
+                    PlainTextContents.LiteralContents(String text)) {
+                if (Flashside.firstStrings.contains(text)) {
+                    Flashside.storeButton(button, Config.Action.START_STOP);
                     cancel = true;
-                } else if (Flashside.secondStrings.contains(contents.text())) {
-                    Flashside.fbButton2 = button;
+                } else if (Flashside.secondStrings.contains(text)) {
+                    Flashside.storeButton(button, Config.Action.PAUSE_UNPAUSE);
                     cancel = true;
-                } else if (Flashside.thirdStrings.contains(contents.text())) {
-                    Flashside.fbButton3 = button;
+                } else if (Flashside.thirdStrings.contains(text)) {
+                    Flashside.storeButton(button, Config.Action.CANCEL);
                     cancel = true;
                 }
             }

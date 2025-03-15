@@ -7,12 +7,12 @@
   "mixins": [
   ],
   "client": [
-    "MixinPauseScreen",
-    "MixinTitleScreen",
-    "flashback.MixinSquaredPauseScreen",
-    "flashback.MixinSquaredTitleScreen",
-    "modmenu.MixinSquaredPauseScreen",
-    "modmenu.MixinModMenuEventHandler"
+    "pause.MixinPauseScreen",
+    "pause.MixinSquaredFlashbackPauseScreen",
+    "pause.MixinSquaredModMenuPauseScreen",
+    "title.MixinModMenuEventHandler",
+    "title.MixinSquaredFlashbackTitleScreen",
+    "title.MixinTitleScreen"
   ],
   "server": [
   ],

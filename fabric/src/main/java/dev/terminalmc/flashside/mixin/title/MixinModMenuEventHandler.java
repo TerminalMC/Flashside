@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.terminalmc.flashside.mixin.modmenu;
+package dev.terminalmc.flashside.mixin.title;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -30,8 +30,9 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ModMenuEventHandler.class)
 public class MixinModMenuEventHandler {
+
     /**
-     * Optionally reposition the ModMenu button.
+     * Optionally repositions the ModMenu title-screen icon button.
      */
     @WrapOperation(
             method = "afterTitleScreenInit",
@@ -41,9 +42,9 @@ public class MixinModMenuEventHandler {
             )
     )
     private static UpdateCheckerTexturedButtonWidget wrapConstructUpdateCheckerTexturedButtonWidget(
-            int x, int y, int width, int height, int u, int v, int hoveredVOffset, 
-            ResourceLocation texture, int textureWidth, int textureHeight, 
-            Button.OnPress pressAction, Component message, 
+            int x, int y, int width, int height, int u, int v, int hoveredVOffset,
+            ResourceLocation texture, int textureWidth, int textureHeight,
+            Button.OnPress pressAction, Component message,
             Operation<UpdateCheckerTexturedButtonWidget> original) {
         if (Flashside.mmTitleScreenY != -1) {
             if (Config.options().modmenuIconTop) {
@@ -53,7 +54,7 @@ public class MixinModMenuEventHandler {
             }
             y = Flashside.mmTitleScreenY;
         }
-        return original.call(x, y, width, height, u, v, hoveredVOffset, texture, 
+        return original.call(x, y, width, height, u, v, hoveredVOffset, texture,
                 textureWidth, textureHeight, pressAction, message);
     }
 }

@@ -18,19 +18,28 @@ package dev.terminalmc.flashside.gui.widget;
 
 import com.mojang.datafixers.util.Pair;
 import com.moulberry.flashback.screen.FlashbackButton;
+import dev.terminalmc.flashside.Flashside;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 public class FlashsideButton extends FlashbackButton {
-    public static final ResourceLocation OVERLAY_START = ResourceLocation.parse("flashside:textures/overlay_start.png");
-    public static final ResourceLocation OVERLAY_FINISH = ResourceLocation.parse("flashside:textures/overlay_finish.png");
-    public static final ResourceLocation OVERLAY_PAUSE = ResourceLocation.parse("flashside:textures/overlay_pause.png");
-    public static final ResourceLocation OVERLAY_UNPAUSE = ResourceLocation.parse("flashside:textures/overlay_unpause.png");
-    public static final ResourceLocation OVERLAY_CANCEL = ResourceLocation.parse("flashside:textures/overlay_cancel.png");
-    public static final ResourceLocation OVERLAY_UNKNOWN = ResourceLocation.parse("flashside:textures/overlay_unknown.png");
-    
+    public static final ResourceLocation OVERLAY_START = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_start.png");
+    public static final ResourceLocation OVERLAY_FINISH = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_finish.png");
+    public static final ResourceLocation OVERLAY_PAUSE = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_pause.png");
+    public static final ResourceLocation OVERLAY_UNPAUSE = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_unpause.png");
+    public static final ResourceLocation OVERLAY_CANCEL = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_cancel.png");
+    public static final ResourceLocation OVERLAY_UNKNOWN = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_unknown.png");
+    public static final ResourceLocation OVERLAY_COMMAND = ResourceLocation.fromNamespaceAndPath(
+            Flashside.MOD_ID, "textures/overlay_command.png");
+
     private final ResourceLocation overlay;
     
     public FlashsideButton(int x, int y, int width, int height, Component component,

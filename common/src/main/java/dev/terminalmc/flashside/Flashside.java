@@ -23,6 +23,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static dev.terminalmc.flashside.config.Config.options;
+
 public class Flashside {
     public static final String MOD_ID = "flashside";
     public static final String MOD_NAME = "Flashside";
@@ -37,10 +39,8 @@ public class Flashside {
     public static final List<String> firstStrings = List.of(startString, finishString);
     public static final List<String> secondStrings = List.of(pauseString, unpauseString);
     public static final List<String> thirdStrings = List.of(cancelString);
-    
-    public static @Nullable Button fbButton1 = null;
-    public static @Nullable Button fbButton2 = null;
-    public static @Nullable Button fbButton3 = null;
+
+    public static final @Nullable Button[] fbButtons = new Button[4];
     public static @Nullable Button mmButton = null;
     
     public static int fbTitleScreenX = -1;
@@ -55,5 +55,14 @@ public class Flashside {
     @SuppressWarnings("unused")
     public static void onConfigSaved(Config config) {
         // If you are maintaining caches based on config values, update them here.
+    }
+
+    public static void storeButton(Button button, Config.Action action) {
+        for (int i = 0; i < options().actions.length; i++) {
+            if (options().actions[i] == action) {
+                fbButtons[i] = button;
+                break;
+            }
+        }
     }
 }
