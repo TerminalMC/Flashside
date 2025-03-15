@@ -52,6 +52,8 @@ public class Flashside {
         Config.getAndSave();
     }
 
-    public static void onConfigSaved(Config instance) {
+    @SuppressWarnings("unused")
+    public static void onConfigSaved(Config config) {
+        // If you are maintaining caches based on config values, update them here.
     }
 }

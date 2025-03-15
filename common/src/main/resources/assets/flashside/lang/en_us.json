@@ -1,9 +1,6 @@
 {
   "flashside.name": "Flashside",
 
-  "modmenu.descriptionTranslation.flashside": "${mod_description}",
-  "fml.menu.mods.info.description.flashside": "${mod_description}",
-
   "message.flashside.viewModrinth": "View on Modrinth",
   "message.flashside.installCloth": "Install Cloth Config API to access mod options",
 

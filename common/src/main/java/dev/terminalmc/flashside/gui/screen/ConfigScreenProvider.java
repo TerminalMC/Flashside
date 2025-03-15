@@ -54,6 +54,7 @@ public class ConfigScreenProvider {
 
         @Override
         public void init() {
+            //noinspection DataFlowIssue
             MultiLineTextWidget messageWidget = new MultiLineTextWidget(
                     width / 2 - 120, height / 2 - 40,
                     localized("message", modKey),

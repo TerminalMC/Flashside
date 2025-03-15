@@ -15,9 +15,9 @@
 
   "entrypoints": {
     "main": [],
-    "client": ["${mod_group}.${mod_id}.${mod_name}Fabric"],
+    "client": ["dev.terminalmc.flashside.FlashsideFabric"],
     "server": [],
-    "modmenu": ["${mod_group}.${mod_id}.gui.screen.ModMenuIntegration"]
+    "modmenu": ["dev.terminalmc.flashside.gui.screen.ModMenuIntegration"]
   },
 
   "mixins": [
