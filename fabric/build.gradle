@@ -9,25 +9,23 @@ dependencies {
         officialMojangMappings()
         parchment("org.parchmentmc.data:parchment-${parchment_minecraft_version}:${parchment_version}@zip")
     }
-    
-    // Fabric loader and API
+
+    // Fabric Loader and API
     modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
-    
+
     // JiJ MixinExtras if required to be newer than minimum loader-provided version
+    // 0.4.1 since 0.16.8
 //    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixinextras_version}")))
-    
-    // MixinSquared
-    include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${mixinsquared_version}")))
-    
-    // Modmenu
+
+    // ModMenu
     modImplementation("maven.modrinth:mOgUt4GM:${modmenu_version}")
-    
+
     // Cloth Config API
     modApi("me.shedaniel.cloth:cloth-config-fabric:${clothconfig_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-    
+
     // Flashback
     modImplementation("maven.modrinth:4das1Fjq:${flashback_version}")
 }

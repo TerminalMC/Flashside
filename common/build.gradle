@@ -1,26 +1,28 @@
 plugins {
     id("multiloader-common")
-    id("net.neoforged.moddev")
+    id("fabric-loom")
 }
 
 dependencies {
+    // Minecraft
+    minecraft("com.mojang:minecraft:${minecraft_version}")
+    mappings loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_minecraft_version}:${parchment_version}@zip")
+    }
+
+    // Mixin
     compileOnly("org.spongepowered:mixin:${mixin_version}")
+    // MixinExtras
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixinextras_version}"))
-    
+
     // Cloth Config API
-    api("me.shedaniel.cloth:cloth-config-neoforge:${clothconfig_version}")
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${clothconfig_version}")
 }
 
-neoForge {
-    version = neoforge_version // Shut up
-    neoFormVersion = neoform_version
-    // Automatically enable AccessTransformers if the file exists
-    def at = file("src/main/resources/META-INF/accesstransformer.cfg")
-    if (at.exists()) accessTransformers.from(at.absolutePath)
-    parchment {
-        minecraftVersion = parchment_minecraft_version
-        mappingsVersion = parchment_version
-    }
+loom {
+    def aw = file("src/main/resources/${mod_id}.accesswidener")
+    if (aw.exists()) accessWidenerPath.set(aw)
 }
 
 configurations {
