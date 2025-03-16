@@ -33,7 +33,7 @@ public class MixinSquaredFlashbackTitleScreen {
 
     /**
      * Optionally repositions the Flashback title-screen icon button created by
-     * {@link MixinTitleScreen#createOpenSelectReplayScreenButton}.
+     * {@link MixinTitleScreen#createOrPositionOpenSelectReplayScreenButton}.
      *
      * <p><b>Note:</b> MixinExtras errors are expected on the annotation,
      * method and target.</p>
@@ -41,7 +41,7 @@ public class MixinSquaredFlashbackTitleScreen {
     @SuppressWarnings("JavadocReference")
     @TargetHandler(
             mixin = "com.moulberry.flashback.mixin.ui.MixinTitleScreen",
-            name = "createOpenSelectReplayScreenButton"
+            name = "createOrPositionOpenSelectReplayScreenButton"
     )
     @WrapOperation(
             method = "@MixinSquared:Handler",
