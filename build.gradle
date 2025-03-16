@@ -6,7 +6,7 @@ plugins {
 }
 
 subprojects {
-    mod_version = "${mod_version}+${minecraft_version}"
+    mod_version = "${mod_version}+${minecraft_version}+fb${flashback_version}"
     version = mod_version
     group = mod_group
 
