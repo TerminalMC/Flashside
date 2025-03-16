@@ -59,7 +59,7 @@ public class ClothScreenProvider {
         ConfigCategory pause = builder.getOrCreateCategory(localized("option", "pause"));
 
         pause.addEntry(eb.startIntSlider(localized("option", "pause.startRow"),
-                        options.startRow, 0, 4)
+                        options.startRow, -4, 6)
                 .setTooltip(localized("option", "pause.startRow.tooltip"))
                 .setDefaultValue(Config.Options.startRowDefault)
                 .setSaveConsumer(val -> options.startRow = val)
@@ -102,7 +102,7 @@ public class ClothScreenProvider {
                 .build());
 
         title.addEntry(eb.startIntSlider(localized("option", "title.startRowTitleScreen"),
-                        options.startRowTitleScreen, 0, 4)
+                        options.startRowTitleScreen, -4, 6)
                 .setTooltip(localized("option", "title.startRowTitleScreen.tooltip"))
                 .setDefaultValue(Config.Options.startRowTitleScreenDefault)
                 .setSaveConsumer(val -> options.startRowTitleScreen = val)

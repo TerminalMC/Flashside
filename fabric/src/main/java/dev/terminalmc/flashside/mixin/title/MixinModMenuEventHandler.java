@@ -46,7 +46,7 @@ public class MixinModMenuEventHandler {
             ResourceLocation texture, int textureWidth, int textureHeight,
             Button.OnPress pressAction, Component message,
             Operation<UpdateCheckerTexturedButtonWidget> original) {
-        if (Flashside.mmTitleScreenY != -1) {
+        if (Flashside.mmTitleScreenY != Integer.MIN_VALUE) {
             if (Config.options().modmenuIconTop) {
                 int temp = Flashside.fbTitleScreenY;
                 Flashside.fbTitleScreenY = Flashside.mmTitleScreenY;

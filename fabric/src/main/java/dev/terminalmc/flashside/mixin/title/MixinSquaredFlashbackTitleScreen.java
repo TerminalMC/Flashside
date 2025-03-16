@@ -53,8 +53,8 @@ public class MixinSquaredFlashbackTitleScreen {
     private FlashbackButton wrapConstructFlashbackButton(int x, int y, int width, int height,
                                                          Component component, Button.OnPress onPress,
                                                          Operation<FlashbackButton> original) {
-        if (Flashside.fbTitleScreenX != -1) x = Flashside.fbTitleScreenX;
-        if (Flashside.fbTitleScreenY != -1) y = Flashside.fbTitleScreenY;
+        if (Flashside.fbTitleScreenX != Integer.MIN_VALUE) x = Flashside.fbTitleScreenX;
+        if (Flashside.fbTitleScreenY != Integer.MIN_VALUE) y = Flashside.fbTitleScreenY;
         return original.call(x, y, width, height, component, onPress);
     }
 }

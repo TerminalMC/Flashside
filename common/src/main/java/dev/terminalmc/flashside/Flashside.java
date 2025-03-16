@@ -43,9 +43,9 @@ public class Flashside {
     public static final @Nullable Button[] fbButtons = new Button[4];
     public static @Nullable Button mmButton = null;
     
-    public static int fbTitleScreenX = -1;
-    public static int fbTitleScreenY = -1;
-    public static int mmTitleScreenY = -1;
+    public static int fbTitleScreenX = Integer.MIN_VALUE;
+    public static int fbTitleScreenY = Integer.MIN_VALUE;
+    public static int mmTitleScreenY = Integer.MIN_VALUE;
     public static boolean mmTitleScreenIcon = false;
 
     public static void init() {

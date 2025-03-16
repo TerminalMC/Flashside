@@ -40,9 +40,9 @@ public class MixinTitleScreen {
             at = @At("HEAD")
     )
     private void onCreateNormalMenuOptions(CallbackInfo ci) {
-        Flashside.fbTitleScreenX = -1;
-        Flashside.fbTitleScreenY = -1;
-        Flashside.mmTitleScreenY = -1;
+        Flashside.fbTitleScreenX = Integer.MIN_VALUE;
+        Flashside.fbTitleScreenY = Integer.MIN_VALUE;
+        Flashside.mmTitleScreenY = Integer.MIN_VALUE;
         Flashside.mmTitleScreenIcon = false;
     }
 

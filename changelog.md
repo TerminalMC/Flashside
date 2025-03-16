@@ -4,6 +4,7 @@
 
 - Added optional command button
 - Added option to change the button order
+- Allow negative indices to shift buttons up further
 - Updated to match Flashback v0.20.1
 
 ## 0.4.0
