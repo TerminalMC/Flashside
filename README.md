@@ -2,6 +2,10 @@
 
 <img alt="Icon" width=100 src="https://raw.githubusercontent.com/TerminalMC/Flashside/HEAD/common/src/main/resources/assets/flashside/icon.png">
 
+## Archival Notice
+
+As of v0.36.0, the core functionality of this mod is included in Flashback.
+
 ## Flashside
 
 Moves the [Flashback](https://modrinth.com/mod/4das1Fjq) recording buttons to the side of the game menu.
