@@ -1,10 +1,10 @@
 <div align="center"><center>
 
-<img alt="Icon" width=100 src="https://raw.githubusercontent.com/TerminalMC/Flashside/HEAD/common/src/main/resources/assets/flashside/icon.png">
-
 ## Archival Notice
 
 As of v0.36.0, the core functionality of this mod is included in Flashback.
+
+<img alt="Icon" width=100 src="https://raw.githubusercontent.com/TerminalMC/Flashside/HEAD/common/src/main/resources/assets/flashside/icon.png">
 
 ## Flashside
 
